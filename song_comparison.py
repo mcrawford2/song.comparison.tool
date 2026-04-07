@@ -58,3 +58,16 @@ if __name__ == "__main__":
     print("song2 average word length:", avg_word_length(song2))
     print("song3 average word length:", avg_word_length(song3))
 
+
+
+def shared_vocab(song1, song2, song3):
+    """Finds the shared vocabulary between three songs."""
+    words1 = set(re.findall(r"[a-zA-Z']+", song1.lower()))
+    words2 = set(re.findall(r"[a-zA-Z']+", song2.lower()))
+    words3 = set(re.findall(r"[a-zA-Z']+", song3.lower()))
+    shared_words = words1.intersection(words2).intersection(words3)
+    return shared_words
+
+if __name__ == "__main__":
+    print()
+    print("Shared vocabulary between the three songs:", shared_vocab(song1, song2, song3))
