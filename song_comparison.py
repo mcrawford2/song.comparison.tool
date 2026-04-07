@@ -11,7 +11,7 @@ with open("song3.txt", "r", encoding="utf-8") as f:
 
 
 def analyze_song(song):
-    """Analyzes a song's lyrics numericallyand returns basic statistics."""
+    """Analyzes a song's lyrics numerically and returns basic statistics."""
     lines = [line for line in song.splitlines() if line.strip()]  # Ignore blank lines.
     num_lines = len(lines)
     num_words = sum(len(line.split()) for line in lines)
@@ -40,4 +40,21 @@ if __name__ == "__main__":
     print("song1 top words:", word_frequency(song1).most_common(10)) # top 10 most common words
     print("song2 top words:", word_frequency(song2).most_common(10))
     print("song3 top words:", word_frequency(song3).most_common(10))
+
+
+
+def avg_word_length(song):
+    """Calculates the average word length per song."""
+    words = re.findall(r"[a-zA-Z']+", song)  # Extract words, ignoring punctuation.
+    total_length = sum(len(word) for word in words)
+    if words:
+        return total_length / len(words)
+    else:
+        return 0
+
+if __name__ == "__main__":
+    print()
+    print("song1 average word length:", avg_word_length(song1))
+    print("song2 average word length:", avg_word_length(song2))
+    print("song3 average word length:", avg_word_length(song3))
 
