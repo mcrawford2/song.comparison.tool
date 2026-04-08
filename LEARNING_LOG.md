@@ -41,26 +41,46 @@
     - If there are no words extracted from the song, len(words) would be 0, causing a crash because anything / 0 = undefined. The else statement safely returns 0 when the words list is empty.
 
 
-## Date: 2026-04-07
+## Date: 2026-04-08
 
 **Goals:**
 - finish/clean previous questions
 
 **What I asked AI to do:**
-- helped with creating shared_vocab()
-
+- Automatic AI code generation helped with creating shared_vocab()
 
 **What I didn't understand in the generated code:**
+- after most new functions, a new 'if __name__ == "__main__":' is created. I was unsure if it was stable for there to be multiple of these, or if the overall program would be better with just one main call at the end. 
 
 **What I learned:**
+- After asking AI about having multiple 'if __name__ == "__main__":', I learned that it is technicaly ok to have many of them. Each block only runs when the script is executed directly, but having many will make the script harder to read and may lead to issues with wrong orders of execution or duplicating outputs. For cleanliness, I changed the script to have one, all inclusive main call at the end. 
 
 
 
-## Date: 2026-04-08
+## Date: 2026-04-09
 
 **Goals:**
 - 1 visualization
-1. 
+1. bar chart for average word length per song
+
+**What I asked AI to do:**
+- fix indentation issues
+- fix error:    import matplotlib.pyplot as plt
+                ModuleNotFoundError: No module named 'matplotlib'
+
+**What I didn't understand in the generated code:**
+- 
+
+**What I learned:**
+- importing the matplotlib.pyploy presented difficulties, as it came with many consecutive errors. The main problem was the environment I was running python in was blocking package installs. I fixed this by selecting a different python interpreter (python.exe). 
+
+
+
+## Date: 2026-04-10
+
+**Goals:**
+- 1 more visualization
+2. wordcloud for shared vocab?
 - clean all txts
 
 **What I asked AI to do:**
