@@ -1,4 +1,5 @@
 import re
+import textwrap
 from collections import Counter
 
 import matplotlib.pyplot as plt
@@ -87,10 +88,74 @@ def shared_wordcloud(song1, song2, song3):
 
 def shared_venn_diagram(song1, song2, song3):
     """Creates a Venn diagram to visualize shared vocabulary between three songs."""
-    plt.figure(figsize=(8, 8))
-    venn3([words1, words2, words3], ("Song 1", "Song 2", "Song 3"))
+    plt.figure(figsize=(12, 9))
+    venn = venn3([words1, words2, words3], ("Song 1", "Song 2", "Song 3"))
+
+    # Lift set labels slightly to keep them clear of external word boxes.
+    for set_label in venn.set_labels:
+        if set_label is not None:
+            x_pos, y_pos = set_label.get_position()
+            set_label.set_position((x_pos, y_pos + 0.03))
+            set_label.set_fontsize(11)
+
+    # Only display overlapping words, not unique-only words.
+    overlap_region_words = {
+        "110": (words1 & words2) - words3,
+        "101": (words1 & words3) - words2,
+        "011": (words2 & words3) - words1,
+        "111": words1 & words2 & words3,
+    }
+
+    for region_id in ("100", "010", "001"):
+        label = venn.get_label_by_id(region_id)
+        if label is not None:
+            label.set_text("")
+
+    def wrap_words(words, line_width=36, max_lines=7):
+        if not words:
+            return "(none)"
+        joined_words = ", ".join(sorted(words))
+        lines = textwrap.wrap(joined_words, width=line_width, break_long_words=False)
+        if len(lines) > max_lines:
+            lines = lines[:max_lines]
+            lines[-1] = lines[-1].rstrip(", ") + " ..."
+        return "\n".join(lines)
+
+    # Put overlap lists in fixed boxes around the chart to avoid label collisions.
+    annotation_positions = {
+        "110": (-0.02, 0.66),
+        "101": (1.02, 0.66),
+        "011": (1.02, 0.28),
+        "111": (-0.02, 0.28),
+    }
+
+    for region_id, words in overlap_region_words.items():
+        label = venn.get_label_by_id(region_id)
+        if label is not None:
+            region_center = label.get_position()
+            label.set_text("")
+
+            x_anchor, y_anchor = annotation_positions[region_id]
+            horizontal_alignment = "left" if x_anchor < 0.5 else "right"
+            plt.annotate(
+                wrap_words(words),
+                xy=region_center,
+                xycoords="data",
+                xytext=(x_anchor, y_anchor),
+                textcoords="axes fraction",
+                ha=horizontal_alignment,
+                va="center",
+                fontsize=8,
+                bbox={"boxstyle": "round,pad=0.3", "fc": "white", "ec": "gray", "alpha": 0.9},
+                arrowprops={"arrowstyle": "-", "color": "gray", "lw": 1},
+            )
+
     plt.title("Shared Vocabulary Venn Diagram")
+    plt.subplots_adjust(left=0.08, right=0.92, top=0.9, bottom=0.08)
+    plt.tight_layout()
     plt.show()
+
+
 
 # main function to run everything
 def main():

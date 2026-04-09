@@ -79,13 +79,15 @@
 ## Date: 2026-04-10
 
 **Goals:**
-- 1 more visualization
-2. wordcloud for shared vocab?
-- clean all txts
+- 2 more visualizations
+2. wordcloud for shared vocab
+3. venn diagram for shared vocab
 
 **What I asked AI to do:**
 - how to start creating a wordcloud
 - help fixing error when wordcloud led to errors
+- add labels (words) to venn diagram
+- make long word lists easier to read by wrapping into multiple lines, make sure words don't overlap
 
 **What I didn't understand in the generated code:**
 - i needed to add "if not shared_words: ... return" in my wordcloud function so that the function wouldn't crash if there were no shared words.
@@ -93,3 +95,5 @@
 
 **What I learned:**
 - had to pip install wordcloud
+
+# next goal: clean all txts, read me, finish?
