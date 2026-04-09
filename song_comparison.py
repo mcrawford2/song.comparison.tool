@@ -2,7 +2,8 @@ import re
 from collections import Counter
 
 import matplotlib.pyplot as plt
-
+from wordcloud import WordCloud
+from matplotlib_venn import venn3
 
 # loading songs
 with open("song1.txt", "r", encoding="utf-8") as f:
@@ -14,6 +15,10 @@ with open("song2.txt", "r", encoding="utf-8") as f:
 with open("song3.txt", "r", encoding="utf-8") as f:
     song3 = f.read()
 
+# repeating variables
+words1 = set(re.findall(r"[a-zA-Z']+", song1.lower()))
+words2 = set(re.findall(r"[a-zA-Z']+", song2.lower()))
+words3 = set(re.findall(r"[a-zA-Z']+", song3.lower()))
 
 # analysis functions
 def analyze_song(song):
@@ -44,9 +49,6 @@ def avg_word_length(song):
 
 def shared_vocab(song1, song2, song3):
     """Finds the shared vocabulary between three songs."""
-    words1 = set(re.findall(r"[a-zA-Z']+", song1.lower()))
-    words2 = set(re.findall(r"[a-zA-Z']+", song2.lower()))
-    words3 = set(re.findall(r"[a-zA-Z']+", song3.lower()))
     return words1.intersection(words2).intersection(words3)
 
 # visualization functions
@@ -62,6 +64,33 @@ def plot_average_word_lengths(song1, song2, song3):
     plt.ylim(0, max(avg_lengths) + 1)
     plt.show()
 
+def shared_wordcloud(song1, song2, song3):
+    """Creates a word cloud of shared vocabulary between three songs."""
+    shared_words = shared_vocab(song1, song2, song3)
+    print("Shared words:", shared_words)
+
+    if not shared_words:
+        print("No shared vocabulary found!")
+        return
+    
+    # Weight words by their combined frequency across all songs
+    freq = word_frequency(song1 + song2 + song3)
+    word_dict = {word: freq[word] for word in shared_words}
+    
+    wordcloud = WordCloud(width=800, height=400, background_color="white").generate_from_frequencies(word_dict)
+
+    plt.figure(figsize=(10, 5))
+    plt.imshow(wordcloud, interpolation="bilinear")
+    plt.axis("off")
+    plt.title("Shared Vocabulary Word Cloud")
+    plt.show()
+
+def shared_venn_diagram(song1, song2, song3):
+    """Creates a Venn diagram to visualize shared vocabulary between three songs."""
+    plt.figure(figsize=(8, 8))
+    venn3([words1, words2, words3], ("Song 1", "Song 2", "Song 3"))
+    plt.title("Shared Vocabulary Venn Diagram")
+    plt.show()
 
 # main function to run everything
 def main():
@@ -80,7 +109,8 @@ def main():
     print()
     print("Shared vocabulary between the three songs:", shared_vocab(song1, song2, song3))
     plot_average_word_lengths(song1, song2, song3)
-
+    shared_wordcloud(song1, song2, song3)
+    shared_venn_diagram(song1, song2, song3)
 
 if __name__ == "__main__":
     main()

@@ -69,10 +69,10 @@
                 ModuleNotFoundError: No module named 'matplotlib'
 
 **What I didn't understand in the generated code:**
-- 
+- this code was pretty stright forward, the only aspect I did not fully grasp at first was importing matplotlib.pyplot but this was necessary to create data visualizations.
 
 **What I learned:**
-- importing the matplotlib.pyploy presented difficulties, as it came with many consecutive errors. The main problem was the environment I was running python in was blocking package installs. I fixed this by selecting a different python interpreter (python.exe). 
+- importing the matplotlib.pyplot presented difficulties, as it came with many consecutive errors. The main problem was the environment I was running python in was blocking package installs. I fixed this by selecting a different python interpreter (python.exe). 
 
 
 
@@ -84,8 +84,12 @@
 - clean all txts
 
 **What I asked AI to do:**
-
+- how to start creating a wordcloud
+- help fixing error when wordcloud led to errors
 
 **What I didn't understand in the generated code:**
+- i needed to add "if not shared_words: ... return" in my wordcloud function so that the function wouldn't crash if there were no shared words.
+- the initial code only allowed two words in the wordcoud because the words were sized based on their frequency. This is beneficial for _____ but did not work for this wordcloud because with such short txt files, it makes sense for some words to only appear once. i like the size based on frequency, but not if that deletes other important words (reword)
 
 **What I learned:**
+- had to pip install wordcloud
