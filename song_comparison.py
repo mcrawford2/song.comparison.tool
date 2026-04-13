@@ -1,5 +1,5 @@
 import re
-import textwrap
+import textwrap     # for visualizations
 from collections import Counter
 
 import matplotlib.pyplot as plt
