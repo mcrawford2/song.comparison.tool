@@ -19,6 +19,19 @@ From my analysis, I have found that between the three songs, song3 has the least
 
 Based on the wordcloud, the most common words across all three songs are all function or structure words: you, the, to, my, come, etc. These are words that connect the main content words in a sentence, such as the nouns, verbs, and adjectives, which are usually more interesting and descriptive. Function and structure words give no broader meaning to the context of the songs. Because these made up the shared vocabulary of the three songs, it can be inferred that (1) these songs all have different meanings and themes, giving them each a unique vocabulary with little crossover, and (2) the bands of the songs did not include any common and overlapping 1980's lingo in their lyrics. 
 
-For a more in depth look into the lyric choices of each songs and how they compare, the venn diagram gives more information on words that may have appeared in two songs, but not a third. This introduces words such as "dream", "life", "freedom", and "world". Even though not all three songs included these words, they give the idea that some common song themes of the 1980's revolve around ideas of _________, and a closer look at a larger variety of songs from this time might validate this as true. 
+For a more in depth look into the lyric choices of each songs and how they compare, the venn diagram gives more information on words that may have appeared in two songs, but not a third. This introduces words such as "dream", "life", "freedom", and "world". Even though not all three songs included these words, they give the idea that some common song themes of the 1980's might be hope, unity, or songs of personal journeys, and a closer look at a larger variety of songs from this time would validate or invalidate this. 
 
 # Two Pass Approach
+Starting with built in python only helped build a strong understanding of what each of my files really needed. I had to decide how to filter the text files, and ended up using only .lower() to make the files case insensitive. I also kept words with apostrophes as one connected word. Additionally, this meant building avg_word_length(song) and shared_vocab(song1, song2, song3) with no external library. This made more decisions, such as inlcuding tokens, not unique words, in avg_word_length() possible, which is beneficial for songs with repetition. 
+
+The third party libraries I use in song_comparison.py are matplotlib.pyplot, wordcloud.WordCloud, and matplotlib_venn.venn3. These were added primarily for my visualization functions, and I chose not to incorporate them into my initial analysis functions. I feel that saving it in this way allowed me to have a greater understanding of the analysis, with intentional choices regarding tokenization and similar others. However, for my visualization functions, the libraries were extremely helpful for plotting the data cleanly, and easily customizing each visual for what the data required of it.
+
+# Visualizations
+- Bar Chart:
+![Bar Chart](visualizations/Figure_1_Bar_Chart.png)
+- Wordcloud:
+![Wordcloud](visualizations/Figure_2_Wordcloud.png)
+- Venn Diagram:
+![Venn Diagram](visualizations/Figure_3_VennDiagram.png)
+
+
