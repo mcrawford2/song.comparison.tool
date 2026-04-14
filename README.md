@@ -15,5 +15,10 @@ This project analyzes and compares the lyrics of three songs, all from the 1980'
     - def shared_venn_diagram(song1, song2, song3) - draws a three-circle venn diagram. The four overlap regions (Song 1+2, Song 1+3, Song 2+3, and Song 1+2+3) have their words listed in labeled boxes with arrows pointing into the corresponding region. This window also needs to be closed to finish.
 
 # Conclusions
+From my analysis, I have found that between the three songs, song3 has the least number of lines, and least number of words, but most words per line and longest average word length. Song1 and song2 have more similar stats, with approximately the same number of lines and average word length. However song1 has 301 total words and 6.84 average words per line, while song2 only has 249 total words and 5.29 average words per line. 
+
+Based on the wordcloud, the most common words across all three songs are all function or structure words: you, the, to, my, come, etc. These are words that connect the main content words in a sentence, such as the nouns, verbs, and adjectives, which are usually more interesting and descriptive. Function and structure words give no broader meaning to the context of the songs. Because these made up the shared vocabulary of the three songs, it can be inferred that (1) these songs all have different meanings and themes, giving them each a unique vocabulary with little crossover, and (2) the bands of the songs did not include any common and overlapping 1980's lingo in their lyrics. 
+
+For a more in depth look into the lyric choices of each songs and how they compare, the venn diagram gives more information on words that may have appeared in two songs, but not a third. This introduces words such as "dream", "life", "freedom", and "world". Even though not all three songs included these words, they give the idea that some common song themes of the 1980's revolve around ideas of _________, and a closer look at a larger variety of songs from this time might validate this as true. 
 
 # Two Pass Approach
